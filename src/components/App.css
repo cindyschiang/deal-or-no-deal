@@ -37,12 +37,7 @@
   }
 }
 
-.Gameboard {
-    width: 100%;
-}
-
-#Boardwrapper {
-    display: flex;
+.gameboard {
     width: 100%;
 }
 
@@ -50,8 +45,27 @@
     width: 16%;
 }
 
+.ValueDisplay {
+    color: #ffffff;
+    width: 200px;
+    height: 51px;
+}
+
+.remaining-values-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 663px;
+
+}
+
+#Boardwrapper {
+    display: flex;
+    width: 100%;
+}
+
 #cases {
-    background-color: blue;
+    background-color: #e0dddd;
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -59,5 +73,5 @@
 
 #remaining-values {
     background-color: green;
-    width: 250px;
+    width: 400px;
 }

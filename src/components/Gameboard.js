@@ -1,6 +1,7 @@
 import Case from "./Case";
-import { caseValues } from "../casevalues";
+import { caseValues } from "../caseValues";
 import React, { useState, useEffect } from "react";
+import { ValueDisplay } from "./ValueDisplay";
 
 function shuffle(array) {
     let currentIndex = array.length;
@@ -36,11 +37,19 @@ function valuesToCaseState() {
 
 const initialCaseState = valuesToCaseState();
 
+// // code for manually sorting the values of the cases array (above)
+// // in order to use it, you'll need to copy the initialCaseState (an array)
+// // so that it doesn't mess with the original initialCaseState (which is used in the gameboard)
+// // with a copy of the initialCaseState array, then you can use it in the ValueDisplay component
+// initialCaseState.sort((left, right) => {
+//     return left.value - right.value;
+// })
+
 function Gameboard() {
     const [cases, setCases] = useState(initialCaseState);
 
     return (
-        <div className="Gameboard">
+        <div className="gameboard">
             <div>
                 <header>Deal or No Deal</header>
                 <p>Selected Case: </p>
@@ -60,7 +69,18 @@ function Gameboard() {
                     })}
                 </div>
                 <div id="remaining-values">
-                    <p>This is for the values list or remaining</p>
+                    <p>Remaining Values</p>
+                    <div className="remaining-values-list">
+                        {cases.map((currCase, index) => {
+                            return (
+                                <ValueDisplay
+                                    key={index}
+                                    value={currCase.value}
+                                    isOpen={currCase.isOpen}
+                                />
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </div>
