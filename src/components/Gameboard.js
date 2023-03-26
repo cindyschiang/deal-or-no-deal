@@ -48,6 +48,28 @@ const initialCaseState = valuesToCaseState();
 function Gameboard() {
     const [cases, setCases] = useState(initialCaseState);
 
+    const updateCase = (updateIndex, newUpdate) => {
+        const newState = cases.map((currCase, index) => {
+          if (index === updateIndex) {
+            // currCase = { value: 1, isOpen: false, isSelected: false}
+            // newUpdate = { isOpen: true }
+            // the ...newUpdate spread will override the isOpen property from currCase spread
+            return {...currCase, ...newUpdate};
+          }
+          return currCase;
+        });
+
+        setCases(newState);
+    };
+
+    const openCase = (index) => {
+        updateCase(index, {isOpen: true});
+    }
+
+    const selectCase = (index) => {
+        updateCase(index, {isSelected: true});
+    }
+
     return (
         <div className="gameboard">
             <div>
@@ -64,6 +86,7 @@ function Gameboard() {
                                 value={currCase.value}
                                 isOpen={currCase.isOpen}
                                 isSelected={currCase.isSelected}
+                                onClick={openCase}
                             />
                         );
                     })}
