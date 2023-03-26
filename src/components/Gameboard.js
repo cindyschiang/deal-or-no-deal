@@ -50,25 +50,25 @@ function Gameboard() {
 
     const updateCase = (updateIndex, newUpdate) => {
         const newState = cases.map((currCase, index) => {
-          if (index === updateIndex) {
-            // currCase = { value: 1, isOpen: false, isSelected: false}
-            // newUpdate = { isOpen: true }
-            // the ...newUpdate spread will override the isOpen property from currCase spread
-            return {...currCase, ...newUpdate};
-          }
-          return currCase;
+            if (index === updateIndex) {
+                // currCase = { value: 1, isOpen: false, isSelected: false}
+                // newUpdate = { isOpen: true }
+                // the ...newUpdate spread will override the isOpen property from currCase spread
+                return { ...currCase, ...newUpdate };
+            }
+            return currCase;
         });
 
         setCases(newState);
     };
 
     const openCase = (index) => {
-        updateCase(index, {isOpen: true});
-    }
+        updateCase(index, { isOpen: true });
+    };
 
     const selectCase = (index) => {
-        updateCase(index, {isSelected: true});
-    }
+        updateCase(index, { isSelected: true });
+    };
 
     return (
         <div className="gameboard">
@@ -101,7 +101,7 @@ function Gameboard() {
                                     value={currCase.value}
                                     isOpen={currCase.isOpen}
                                 />
-                            )
+                            );
                         })}
                     </div>
                 </div>

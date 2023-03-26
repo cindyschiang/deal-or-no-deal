@@ -51,6 +51,11 @@
     height: 51px;
 }
 
+.value-case-open {
+    text-decoration: line-through;
+    color: black;
+}
+
 .remaining-values-list {
     display: flex;
     flex-wrap: wrap;
