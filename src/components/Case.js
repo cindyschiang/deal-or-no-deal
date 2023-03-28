@@ -6,7 +6,7 @@ function Case(props) {
                 <p>${props.value}</p>
             ) : (
                 <button onClick={(e) => props.onClick(props.index)}>
-                    Open
+                    {props.userSelecting ? ("Select") : ("Open")}
                 </button>
             )}
         </div>

@@ -28,7 +28,6 @@ function valuesToCaseState() {
         return {
             value: value,
             isOpen: false,
-            isSelected: false,
         };
     });
     shuffle(cases);
@@ -47,6 +46,7 @@ const initialCaseState = valuesToCaseState();
 
 function Gameboard() {
     const [cases, setCases] = useState(initialCaseState);
+    const [selectedCase, setSelectedCase] = useState();
 
     const updateCase = (updateIndex, newUpdate) => {
         const newState = cases.map((currCase, index) => {
@@ -66,15 +66,19 @@ function Gameboard() {
         updateCase(index, { isOpen: true });
     };
 
-    const selectCase = (index) => {
-        updateCase(index, { isSelected: true });
-    };
+    let userSelecting = selectedCase === undefined;
+    let onClick;
+    if (userSelecting) {
+        onClick = setSelectedCase;
+    } else {
+        onClick = openCase;
+    }
 
     return (
         <div className="gameboard">
             <div>
                 <header>Deal or No Deal</header>
-                <p>Selected Case: </p>
+                <p>Selected Case: {!userSelecting ? (selectedCase + 1) : ""}</p>
             </div>
             <div id="Boardwrapper">
                 <div id="cases">
@@ -85,8 +89,9 @@ function Gameboard() {
                                 index={index}
                                 value={currCase.value}
                                 isOpen={currCase.isOpen}
-                                isSelected={currCase.isSelected}
-                                onClick={openCase}
+                                userSelecting={userSelecting}
+                                isSelected={index===selectedCase}
+                                onClick={onClick}
                             />
                         );
                     })}
