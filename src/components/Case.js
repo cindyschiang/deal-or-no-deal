@@ -4,17 +4,13 @@ function Case(props) {
             <p>Case {props.index + 1}</p>
             {props.isSelected ? (
                 <p>SELECTED</p>
+            ) : props.isOpen ? (
+                <p>${props.value}</p>
             ) : (
-                props.isOpen ? (
-                    <p>${props.value}</p>
-                ) : (
-                    <button onClick={(e) => props.onClick(props.index)}>
-                        {props.userSelecting ? ("Select") : ("Open")}
-                    </button>
-                )
+                <button onClick={(e) => props.onClick(props.index)}>
+                    {props.userSelecting ? "Select" : "Open"}
+                </button>
             )}
-
-
         </div>
     );
 }

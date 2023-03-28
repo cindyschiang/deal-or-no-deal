@@ -78,7 +78,7 @@ function Gameboard() {
         <div className="gameboard">
             <div>
                 <header>Deal or No Deal</header>
-                <p>Selected Case: {!userSelecting ? (selectedCase + 1) : ""}</p>
+                <p>Selected Case: {!userSelecting ? selectedCase + 1 : ""}</p>
             </div>
             <div id="Boardwrapper">
                 <div id="cases">
@@ -90,7 +90,7 @@ function Gameboard() {
                                 value={currCase.value}
                                 isOpen={currCase.isOpen}
                                 userSelecting={userSelecting}
-                                isSelected={index===selectedCase}
+                                isSelected={index === selectedCase}
                                 onClick={onClick}
                             />
                         );
