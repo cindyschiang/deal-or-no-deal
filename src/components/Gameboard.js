@@ -54,13 +54,13 @@ function Gameboard() {
 
     useEffect(() => {
         if (remainingCases === 0) {
-            setRound(round+1);
+            setRound(round + 1);
         }
-    }, [remainingCases])
+    }, [remainingCases]);
 
     useEffect(() => {
-        setRemainingCases(rounds[round])
-    }, [round])
+        setRemainingCases(rounds[round]);
+    }, [round]);
 
     const updateCase = (updateIndex, newUpdate) => {
         const newState = cases.map((currCase, index) => {
