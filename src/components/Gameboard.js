@@ -44,9 +44,23 @@ const initialCaseState = valuesToCaseState();
 //     return left.value - right.value;
 // })
 
+const rounds = [6, 5, 4, 3, 2, 1, 1, 1, 1];
+
 function Gameboard() {
     const [cases, setCases] = useState(initialCaseState);
     const [selectedCase, setSelectedCase] = useState();
+    const [round, setRound] = useState(0); // helps determines which round we're in
+    const [remainingCases, setRemainingCases] = useState(rounds[0]); // helps determine when round is over
+
+    useEffect(() => {
+        if (remainingCases === 0) {
+            setRound(round+1);
+        }
+    }, [remainingCases])
+
+    useEffect(() => {
+        setRemainingCases(rounds[round])
+    }, [round])
 
     const updateCase = (updateIndex, newUpdate) => {
         const newState = cases.map((currCase, index) => {
@@ -64,6 +78,7 @@ function Gameboard() {
 
     const openCase = (index) => {
         updateCase(index, { isOpen: true });
+        setRemainingCases(remainingCases - 1);
     };
 
     let userSelecting = selectedCase === undefined;
